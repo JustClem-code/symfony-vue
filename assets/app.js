@@ -11,3 +11,5 @@ import './bootstrap.js';
 import './styles/app.css';
 
 registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/));
+
+console.log('This is a log message from app.js');

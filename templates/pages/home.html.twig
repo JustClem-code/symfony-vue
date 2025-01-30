@@ -1,1 +1,9 @@
-<h1>Your lucky number is {{ number }}</h1>
+{% extends 'base.html.twig' %}
+{% block title %}
+	Vue component
+{% endblock %}
+{% block body %}
+	<h1>Your lucky number is
+		{{ number }}</h1>
+	<div {{ vue_component('Hello', { 'name': 'clem' }) }}></div>
+{% endblock %}
