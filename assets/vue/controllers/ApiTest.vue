@@ -9,7 +9,7 @@ const fetchData = async () => {
     const response = await fetch('https://localhost/array');
     data.value = await response.json();
   } catch (err) {
-    error.value = 'putainnnn';
+    error.value = 'erreur';
   }
 };
 
