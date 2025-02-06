@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
+const props = defineProps(['title'])
+
 const data = ref(null);
 const error = ref(null);
 
@@ -15,17 +17,22 @@ const fetchData = async () => {
 
 onMounted(() => {
   fetchData();
+  console.log('title', props.title);
+
 });
 </script>
 
 <template>
-  <div v-if="data">
-    {{ data }}
-    <div v-for="dat in data" key="dat.titre">
-      <p>{{ dat.titre }}</p>
-      <p>{{ dat.age }}</p>
+  <div>
+    <h1>{{ title }} ju</h1>
+    <div v-if="data">
+      {{ data }}
+      <div v-for="dat in data" key="dat.titre">
+        <p>{{ dat.titre }}</p>
+        <p>{{ dat.age }}</p>
+      </div>
     </div>
+    <div v-else-if="error">Error: {{ error }}</div>
+    <div v-else>Loading...</div>
   </div>
-  <div v-else-if="error">Error: {{ error }}</div>
-  <div v-else>Loading...</div>
 </template>

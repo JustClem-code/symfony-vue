@@ -18,8 +18,8 @@ class HomeController extends AbstractController
     ]);
   }
 
-  #[Route("/array")]
-  public function getArrayTest()
+  #[Route("/array", methods: ['GET'])]
+  public function getArrayTest(): Response
   {
     $list = [
       array("titre" => "M.", "age" => 30, "ville" => "Paris"),
