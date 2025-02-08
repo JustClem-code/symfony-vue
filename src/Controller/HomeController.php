@@ -2,9 +2,12 @@
 // src/Controller/HomeController.php
 namespace App\Controller;
 
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Response;
+
+use Doctrine\ORM\EntityManagerInterface;
 
 class HomeController extends AbstractController
 {
@@ -29,4 +32,14 @@ class HomeController extends AbstractController
 
     return $this->json($list, 200);
   }
+
+  #[Route('/getproducts', name: 'get_products', methods: ['GET'])]
+    public function getAllAppellations(EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Product::class);
+
+        $products = $repository->transformAll();
+
+        return $this->json($products);
+    }
 }

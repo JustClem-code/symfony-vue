@@ -8,7 +8,7 @@ const error = ref(null);
 
 const fetchData = async () => {
   try {
-    const response = await fetch('https://localhost/array');
+    const response = await fetch('https://localhost/getproducts');
     data.value = await response.json();
   } catch (err) {
     error.value = 'erreur';

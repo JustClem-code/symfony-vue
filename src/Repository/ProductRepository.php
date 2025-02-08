@@ -11,33 +11,29 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Product::class);
+  public function __construct(ManagerRegistry $registry)
+  {
+    parent::__construct($registry, Product::class);
+  }
+
+  public function transform(Product $product)
+  {
+    return [
+      'id' => (int) $product->getId(),
+      'name' => (string) $product->getName(),
+      'price' => (float) $product->getPrice(),
+    ];
+  }
+
+  public function transformAll()
+  {
+    $products = $this->findAll();
+    $productCollection = [];
+
+    foreach ($products as $product) {
+      $productCollection[] = $this->transform($product);
     }
 
-    //    /**
-    //     * @return Product[] Returns an array of Product objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Product
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    return $productCollection;
+  }
 }
