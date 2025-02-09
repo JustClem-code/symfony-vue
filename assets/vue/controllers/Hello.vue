@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="bg-midnight">
+    <h1 class="text-3xl font-bold underline text-tahiti">
+      Hello world!
+    </h1>
+
     <h1>Hello salut {{ nom }}!</h1>
 
     <h1>{{ message }}</h1>
